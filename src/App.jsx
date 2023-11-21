@@ -1,4 +1,5 @@
 import Player from './components/Player.jsx';
+import GameBoard from './components/GameBoard.jsx';
 
 function App() {
   
@@ -10,7 +11,7 @@ function App() {
           <Player initialName="Player 2" symbol="O"></Player>
         </ol>
 
-        GAME BOARD
+        <GameBoard />
       </div>
 
       LOG
