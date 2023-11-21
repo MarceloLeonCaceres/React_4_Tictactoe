@@ -8,7 +8,7 @@ export default function Player({name, symbol}){
     // let btnCaption = "Edit";
 
     function handleEditClick(){                
-        setIsEditing(!isEditing);
+        setIsEditing((editing) => !editing);
     }
 
     if(isEditing){
