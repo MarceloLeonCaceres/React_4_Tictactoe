@@ -5,6 +5,7 @@ import GameBoard from './components/GameBoard.jsx';
 import Log from './components/Log.jsx';
 
 function App() {
+
   const [gameTurns, setGameTurns] = useState([]);
   const[activePlayer, setActivePlayer] = useState('X');
 
@@ -13,13 +14,13 @@ function App() {
     setGameTurns(prevTurns => {
       let currentPlayer = 'X';
       
-      if(prevTurns.lastIndexOf > 0 && prevTurns[0].player === 'X'){
+      if(prevTurns.length > 0 && prevTurns[0].player === 'X'){
         currentPlayer = 'O';
       }
       
       const updatedTurns = [
         { square:{row: rowIndex, col: colIndex}, player: activePlayer },
-         ...prevTurns
+         ...prevTurns,
       ];
         
     return updatedTurns;
@@ -35,7 +36,7 @@ function App() {
           <Player initialName="Player 2" symbol="O" isActive ={ activePlayer==='O' }></Player>
         </ol>
 
-        <GameBoard onSelectSquare={handleSelectSquare} activePlayerSymbol={activePlayer}/>
+        <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
       </div>
 
       <Log/>
