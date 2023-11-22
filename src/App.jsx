@@ -52,7 +52,7 @@ function App() {
         firstSquareSymbol === secondSquareSymbol && 
         secondSquareSymbol === thirdSquareSymbol
       ){
-        winner = firstSquareSymbol;
+        winner = players[firstSquareSymbol];
       }
   }
 
@@ -77,8 +77,6 @@ function App() {
 
   function handleRestart(){
     setGameTurns([]);
-    winner = null;
-    hasDraw = false;
   }
 
   function handlePlayerNameChange(symbol, newName){
@@ -94,8 +92,14 @@ function App() {
     <main>
       <div id="game-container">
         <ol id="players" className='highlight-player'>
-          <Player initialName="Player 1" symbol="X" isActive ={ activePlayer==='X' }></Player>
-          <Player initialName="Player 2" symbol="O" isActive ={ activePlayer==='O' }></Player>
+          <Player initialName="Player 1" symbol="X" isActive ={ activePlayer==='X' }
+                  onChangeName={handlePlayerNameChange}
+          >
+          </Player>
+          <Player initialName="Player 2" symbol="O" isActive ={ activePlayer==='O' }
+                  onChangeName={handlePlayerNameChange}
+          >
+          </Player>
         </ol>
         {(winner || hasDraw )&& <GameOver winner={winner} onRestart={handleRestart} />}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
